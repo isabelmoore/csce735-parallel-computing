@@ -19,8 +19,34 @@
 #
 module load intel               # load Intel software stack 
 #
+icx -O3 -lpthread -o sort_list.exe sort_list.c
+#
 ./sort_list.exe 4 1 
 ./sort_list.exe 4 2 
 ./sort_list.exe 4 3 
 ./sort_list.exe 20 4 
 ./sort_list.exe 24 8 
+
+./sort_list.exe 12 0
+./sort_list.exe 12 1
+./sort_list.exe 12 2
+./sort_list.exe 12 4
+./sort_list.exe 12 6
+./sort_list.exe 12 8
+./sort_list.exe 12 10
+
+./sort_list.exe 20 0
+./sort_list.exe 20 1
+./sort_list.exe 20 2
+./sort_list.exe 20 4
+./sort_list.exe 20 6
+./sort_list.exe 20 8
+./sort_list.exe 20 10
+
+./sort_list.exe 28 0
+./sort_list.exe 28 1
+./sort_list.exe 28 2
+./sort_list.exe 28 4
+./sort_list.exe 28 6
+./sort_list.exe 28 8
+./sort_list.exe 28 10
