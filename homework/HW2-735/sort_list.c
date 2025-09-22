@@ -117,7 +117,6 @@ static void *worker(void *arg) {
                 Each thread first sorts its own sublist using qsort, then merges 
                 sublists in parallel with other threads.
     Input:   arg = thread ID (0, 1, ..., num_threads-1)
-    Output:  None
     Returns: NULL
     */
     int my_id = *(int *)arg; // my thread ID
