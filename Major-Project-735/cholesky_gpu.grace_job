@@ -1,0 +1,29 @@
+#!/bin/bash
+## ENVIRONMENT SETTINGS; CHANGE WITH CAUTION
+#SBATCH --export=NONE                  # Do not propagate environment
+#SBATCH --get-user-env=L               # Replicate login environment
+
+## NECESSARY JOB SPECIFICATIONS
+#SBATCH --job-name=cholesky_gpu        # Job name
+#SBATCH --time=06:00:00                # Wall clock limit (6 hours)
+#SBATCH --nodes=1                      # Use 1 node
+#SBATCH --ntasks-per-node=24           # Half the cores on a GPU node (recommended)
+#SBATCH --mem=180G                     # Half the memory on a GPU node
+#SBATCH --partition=gpu                # Use the GPU partition
+#SBATCH --gres=gpu:a100:1              # Request 1 A100 GPU
+#SBATCH --output=outputs/out_%j.out   # Stdout/stderr -> file
+
+## OPTIONAL JOB SPECIFICATIONS
+##SBATCH --mail-type=ALL               # Send email on all job events
+##SBATCH --mail-user=your_email@tamu.edu
+
+# ----------------- Begin Executable Section -----------------
+
+# Load modules (as in the assignment handout)
+module load intel/2023a CUDA/12.2
+
+# Build (only do this here if you want to compile inside the job)
+nvcc -O3 -o cholesky_gpu.exe cholesky_gpu.cu
+
+# Run: adjust matrix size as needed for your experiments
+./cholesky_gpu.exe 4096
